@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "Eaux de Grenoble's connector",
+  "name": "Cozy Konnector Eaux de Grenoble",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
@@ -20,7 +20,7 @@
   "data_types": [
     "bill"
   ],
-  "screenshots": [ "screenshots/screenshot1.png" ],
+  "screenshots": [],
   "permissions": {
     "files": {
       "type": "io.cozy.files"
@@ -31,8 +31,8 @@
     }
   },
   "developer": {
-    "name": "Cozy",
-    "url": "https://cozy.io"
+    "name": "Erwan Guyader (@taratatach)",
+    "url": "https://github.com/taratatach"
   },
   "langs": ["fr", "en"],
   "locales": {
@@ -50,7 +50,7 @@
     },
     "en": {
       "short_description": "Connector for Eaux de Grenoble",
-      "long_description": "This template fetches the bills from the Eaux de Grenoble's website",
+      "long_description": "This connector fetches the bills from the Eaux de Grenoble's website",
       "permissions": {
         "files": {
           "description": "Required to save the bills"

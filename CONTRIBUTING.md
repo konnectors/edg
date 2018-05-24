@@ -1,7 +1,7 @@
-How to contribute to Cozy <APP_NAME>?
+How to contribute to Cozy Konnector Eaux de Grenoble?
 ====================================
 
-Thank you for your interest in contributing to Cozy! There are many ways to contribute, and we appreciate all of them.
+Thank you for your interest in contributing to the konnector! There are many ways to contribute, and we appreciate all of them.
 
 
 Security Issues
@@ -23,7 +23,7 @@ Opening an issue is as easy as following [this link][issues] and filling out the
 - What did you try, step by step?
 - What did you expect?
 - What did happen instead?
-- What is the version of the Cozy <APP_NAME>?
+- What is the version of the Cozy Konnector Eaux de Grenoble?
 
 
 Pull Requests
@@ -113,7 +113,7 @@ Documentation improvements are very welcome. We try to keep a good documentation
 Translations
 ------------
 
-The Cozy <APP_NAME> is translated on a platform called [Transifex][tx]. [This tutorial][tx-start] can help you to learn how to make your first steps here. If you have any question, don't hesitate to ask us!
+The Cozy Konnector Eaux de Grenoble is translated on a platform called [Transifex][tx]. [This tutorial][tx-start] can help you to learn how to make your first steps here. If you have any question, don't hesitate to ask us!
 
 
 Community

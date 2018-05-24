@@ -1,4 +1,4 @@
-[Cozy][cozy] <YOUR SUPER NEW KONNECTOR NAME>
+[Cozy][cozy] Konnector Eaux de Grenoble
 =======================================
 
 What's Cozy?
@@ -11,7 +11,13 @@ What's Cozy?
 What's this new konnector?
 --------------------------
 
-<YOUR DESCRIPTION HERE>
+The Cozy Konnector Eaux de Grenoble will automatically download all your bills as PDF documents from https://ael.eauxdegrenoblealpes.fr/.
+All of your subscriptions bills will be grouped together into a folder path following this pattern:
+```
+<Contract type (e.g. EAU)>/<Street address>/<Filename with contract id>
+```
+
+It requires your login and password as defined when creating your online account on https://ael.eauxdegrenoblealpes.fr/ and a base folder.
 
 ### Open a Pull-Request
 
@@ -23,7 +29,7 @@ This connector uses [cozy-konnector-libs](https://github.com/cozy/cozy-konnector
 
 ### Maintainer
 
-The lead maintainers for this konnector is <YOUR NAME>
+The lead maintainers for this konnector is @taratatach.
 
 
 ### Get in touch
@@ -39,7 +45,7 @@ You can reach the Cozy Community by:
 License
 -------
 
-<YOUR KONNECTOR NAME> is developed by <your name> and distributed under the [AGPL v3 license][agpl-3.0].
+Cozy Konnector Eaux de Grenoble is developed by Erwan Guyader (@taratatach) and distributed under the [AGPL v3 license][agpl-3.0].
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
