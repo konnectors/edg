@@ -1,19 +1,19 @@
 {
   "version": "1.0.0",
-  "name": "Connector template",
+  "name": "Eaux de Grenoble's connector",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
   "slug": "template",
-  "source": "git://github.com/konnectors/cozy-konnector-template.git",
-  "editor": "Cozy",
-  "vendor_link": "Link to the target website",
-  "categories": ["other"],
+  "source": "git://github.com/taratatach/cozy-konnector-edg.git",
+  "editor": "Erwan Guyader",
+  "vendor_link": "https://ael.eauxdegrenoblealpes.fr",
+  "categories": ["energy"],
   "fields": {
     "advancedFields": {
       "folderPath": {
-        "advanced": true,
-        "isRequired": false
+        "advanced": false,
+        "isRequired": true
       }
     }
   },
@@ -22,9 +22,6 @@
   ],
   "screenshots": [ "screenshots/screenshot1.png" ],
   "permissions": {
-    "books": {
-      "type": "io.cozy.books"
-    },
     "files": {
       "type": "io.cozy.files"
     },
@@ -40,12 +37,9 @@
   "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Template de connecteur",
-      "long_description": "Ce template récupère une liste de livres sur un site de scraping",
+      "short_description": "Connecteur Eaux de Grenoble",
+      "long_description": "Ce connecteur récupère les factures depuis le site de Eaux de Grenoble",
       "permissions": {
-        "books": {
-          "description": "Utilisé pour sauvegarder les références des livres"
-        },
         "files": {
           "description": "Utilisé pour sauvegarder les factures"
         },
@@ -55,12 +49,9 @@
       }
     },
     "en": {
-      "short_description": "Connector template",
-      "long_description": "This template fetches a list of books from a scraping website",
+      "short_description": "Connector for Eaux de Grenoble",
+      "long_description": "This template fetches the bills from the Eaux de Grenoble's website",
       "permissions": {
-        "books": {
-          "description": "Required to save books references"
-        },
         "files": {
           "description": "Required to save the bills"
         },
