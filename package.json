@@ -27,7 +27,7 @@
     "build": "webpack",
     "precommit": "yarn lint",
     "lint": "eslint --fix .",
-    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/konnectors/cozy-konnector-template.git}",
+    "deploy": "git-directory-deploy --directory build/ --branch ${DEPLOY_BRANCH:-build} --repo=${DEPLOY_REPOSITORY:-https://$GITHUB_TOKEN@github.com/taratatach/cozy-konnector-edg.git}",
     "cozyPublish": "cozy-app-publish --token $REGISTRY_TOKEN --build-commit $(git rev-parse ${DEPLOY_BRANCH:-build})"
   },
   "dependencies": {
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "4.5.1",
-    "cozy-app-publish": "0.3.6",
+    "cozy-app-publish": "^0.3.6",
     "cozy-jobs-cli": "1.0.17",
     "eslint": "4.19.1",
     "eslint-config-cozy-app": "0.5.1",
