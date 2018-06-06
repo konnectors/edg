@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "name": "Cozy Konnector Eaux de Grenoble",
+  "version": "1.0.1",
+  "name": "Eaux de Grenoble",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
@@ -10,6 +10,12 @@
   "vendor_link": "https://ael.eauxdegrenoblealpes.fr",
   "categories": ["energy"],
   "fields": {
+    "login": {
+      "type":"email"
+    },
+    "password": {
+      "type":"password"
+    },
     "advancedFields": {
       "folderPath": {
         "advanced": false,
