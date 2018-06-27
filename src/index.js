@@ -1,4 +1,5 @@
 const {
+  log,
   BaseKonnector,
   mkdirp,
   addData,
@@ -16,8 +17,10 @@ async function start(fields) {
   const token = await authenticate(fields.login, fields.password)
 
   return (await fetchSubscriptions(token)).map(async sub => {
-    const folderPath = [fields.folder, sub.folderPath()]
-    await mkdirp(...folderPath)
+    const folderPath = sub.folderPath()
+    log('debug', `Folder path: ${folderPath}`)
+
+    await mkdirp(folderPath)
 
     await sub.fetchBills()
 
@@ -25,7 +28,7 @@ async function start(fields) {
     await addData(entries, 'io.cozy.files')
     await saveFiles(
       entries,
-      { folderPath: folderPath.join('/') },
+      { folderPath: folderPath },
       { contentType: 'application/pdf' }
     )
   })
