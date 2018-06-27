@@ -61,7 +61,7 @@ class Subscription {
   folderPath() {
     const re = /^(.+)\d{5}/
     const street = re.exec(this.address)[1].trim()
-    return `${this.type}/${street}`
+    return `${street}/${this.type}`
   }
 }
 
