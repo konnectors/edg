@@ -14,7 +14,6 @@ module.exports = new BaseKonnector(start)
 // information (fields). When you run this connector yourself in "standalone" mode or "dev" mode,
 // the account information come from ./konnector-dev-config.json file
 async function start(fields) {
-  log('debug', { fields })
   const token = await authenticate(fields.login, fields.password)
 
   return (await fetchSubscriptions(token)).map(async sub => {
