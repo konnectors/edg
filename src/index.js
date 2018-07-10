@@ -1,10 +1,4 @@
-const {
-  log,
-  BaseKonnector,
-  mkdirp,
-  addData,
-  saveFiles
-} = require('cozy-konnector-libs')
+const { log, BaseKonnector, mkdirp, saveFiles } = require('cozy-konnector-libs')
 const { authenticate } = require('./auth')
 const { fetchSubscriptions } = require('./subscriptions')
 
@@ -16,20 +10,21 @@ module.exports = new BaseKonnector(start)
 async function start(fields) {
   const token = await authenticate(fields.login, fields.password)
 
-  return (await fetchSubscriptions(token)).map(async sub => {
-    const folderPath = [fields.folderPath, sub.folderPath()].join('/')
-    log('debug', { folderPath })
+  return Promise.all(
+    (await fetchSubscriptions(token)).map(async sub => {
+      const folderPath = [fields.folderPath, sub.folderPath()].join('/')
+      log('debug', { folderPath })
 
-    await mkdirp(folderPath)
+      await mkdirp(folderPath)
 
-    await sub.fetchBills()
+      await sub.fetchBills()
 
-    const entries = await sub.newEntries()
-    await addData(entries, 'io.cozy.files')
-    await saveFiles(
-      entries,
-      { folderPath: folderPath },
-      { contentType: 'application/pdf' }
-    )
-  })
+      const entries = await sub.newEntries()
+      await saveFiles(
+        entries,
+        { folderPath: folderPath },
+        { contentType: 'application/pdf' }
+      )
+    })
+  )
 }
