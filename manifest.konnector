@@ -1,11 +1,11 @@
 {
-  "version": "1.2.1",
+  "version": "1.3.0",
   "name": "Eaux de Grenoble",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
   "slug": "edg",
-  "source": "git://github.com/taratatach/cozy-konnector-edg.git",
+  "source": "git://github.com/konnectors/edg.git",
   "editor": "taratatach",
   "vendor_link": "https://ael.eauxdegrenoblealpes.fr",
   "categories": ["energy"],
@@ -66,5 +66,6 @@
         }
       }
     }
-  }
+  },
+  "manifest_version": "2"
 }
