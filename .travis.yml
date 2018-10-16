@@ -6,7 +6,7 @@ env:
   - GH_USER_EMAIL="travis@example.org"
   - GH_USER_NAME="cozy-bot"
   - DEPLOY_REPOSITORY="git@github.com:konnectors/edg.git"
-  # Token to access Cozy Registry, you should replace it with a token specific to this konnector
+  - secure: De1gSh9SuRAJerKH3I3v9xo2gQxtlI+5cVI0jwQiAuSZP3n3wWVXDNjEjqN5JkLeCWlv1MPpK8uh4jV42e+YgyrBddMELBRc/kDxGy9DWViVx7hkQucXD0FRAQ9cNAMixqBufXN1CbeywSbGpv7WMtpbSStgRiu3+U1igOMerxkz0CCzbNAennacaU1dhhTf2jeOp36i93mA1cTlFAHdBAzpYPb6p3/MqD6b06oH8oJG0dghrhK9HT76w9LBrmGGHTR0AE/AlbHrWKZAzfJpc/YkJkaKGCt8iHMqOlBxL814xgbtzAZ26XlmZTY0fQmEsPD8xfakE/7/uz2lWaKDyYCyEgXktHT84w4s3RckWlOhk4g4URQMNWpG5d8xrwrn09O9cM79jtvGYhYKsTucftD/i6r/HqUllXBE7r+h5nRyVNFJ40V8pxTHzWVeWhX/DUhPsxhOZAdPTzsvFjPCGDM7kfePCkbBOJdANnF0q+d1XtJFMk79cQI401dqs8J+t7RK0M4cgZTelSM9S1qXuDKh6SEyCElURq+8urBaTa5kd3VnVDKdiiEZ5IdbKOYvqAtEF1yrH0UTNN1AeuXClJ1YLOrJqwdiLHmGJFc+TR/vdTxJD7sM5ggAGp+VnqYQuKvsW024HZlyAAZbK67FDrd6QYOsyQwC+tTTMXbZ0k4=
 cache:
   yarn: true
   directories:
@@ -31,9 +31,8 @@ deploy:
   on:
     tags: true
 before_install:
-# run the yarn travisDeployKey command to genrate this
-# - openssl aes-256-cbc -K $encrypted_0b21ecdcf920_key -iv $encrypted_0b21ecdcf920_iv
-#   -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- openssl aes-256-cbc -K $encrypted_1a2df1ec894b_key -iv $encrypted_1a2df1ec894b_iv
+  -in github_deploy_key.enc -out /tmp/github_deploy_key -d
 - eval "$(ssh-agent -s)"
 - chmod 600 /tmp/github_deploy_key
 - ssh-add /tmp/github_deploy_key
