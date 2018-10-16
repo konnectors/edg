@@ -1,26 +1,42 @@
 language: node_js
 node_js:
-  - '8'
-
+- '8'
+env:
+  global:
+  - GH_USER_EMAIL="travis@example.org"
+  - GH_USER_NAME="cozy-bot"
+  - DEPLOY_REPOSITORY="git@github.com:konnectors/edg.git"
+  # Token to access Cozy Registry, you should replace it with a token specific to this konnector
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
+branches:
+  except:
+  - build
+  - build-debug
 script:
-  - yarn lint
-  - yarn build
+- yarn lint
+- yarn build
+- yarn run check
 deploy:
-  # publish dev versions
-  - provider: script
-    repo: konnectors/cozy-konnector-template
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
-    on:
-      branch: master
-  # publish stable versions and beta versions based on tags
-  - provider: script
-    repo: konnectors/cozy-konnector-template
-    skip-cleanup: true
-    script: DEPLOY_BRANCH=build && yarn deploy && yarn cozyPublish
-    on:
-      tags: true
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    branch: master
+- provider: script
+  skip-cleanup: true
+  script: DEPLOY_BRANCH=build yarn deploy && yarn cozyPublish
+  on:
+    tags: true
+before_install:
+# run the yarn travisDeployKey command to genrate this
+# - openssl aes-256-cbc -K $encrypted_0b21ecdcf920_key -iv $encrypted_0b21ecdcf920_iv
+#   -in github_deploy_key.enc -out /tmp/github_deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 /tmp/github_deploy_key
+- ssh-add /tmp/github_deploy_key
+after_deploy:
+- rm /tmp/github_deploy_key
+- ssh-add -D
