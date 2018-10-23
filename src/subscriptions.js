@@ -10,7 +10,11 @@ const pdfUrl = baseUrl + '/Facture/telechargePdf/'
 class Subscription {
   constructor(
     token,
-    { numeroContrat, typeContrat: { libelle }, adresseLivraisonConstruite }
+    {
+      numeroContrat,
+      typeContrat: { libelle },
+      adresseLivraisonConstruite
+    }
   ) {
     this.token = token
     this.id = numeroContrat
