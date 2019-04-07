@@ -1,9 +1,8 @@
 const { log, Document, hydrateAndFilter } = require('cozy-konnector-libs')
-const merge = require('lodash/merge')
-const { baseUrl, baseHeaders, request } = require('./request')
-const { generateConversationId } = require('./auth')
+const { baseUrl } = require('./request')
+const Paginator = require('./paginator.js')
 
-const subscriptionsUrl = baseUrl + '/Abonnement/listeAbonnements'
+const subscriptionsUrl = baseUrl + '/Abonnement/contrats'
 const billsUrl = baseUrl + '/Facture/listeFactures/'
 const pdfUrl = baseUrl + '/Facture/telechargePdf/'
 
@@ -26,23 +25,23 @@ class Subscription {
   async fetchBills() {
     log('info', 'Fetching bills...')
 
-    try {
-      const response = await request({
-        method: 'GET',
-        uri: billsUrl + this.id,
-        headers: merge(baseHeaders, {
-          ConversationId: generateConversationId(),
-          token: this.token
-        }),
-        body: {}
-      })
-
-      log('debug', `Results count: ${response.resultats.length}`)
-      this.bills = response.resultats.map(result => new Bill(result))
-    } catch (e) {
-      log('error', e.toString())
-      this.bills = []
+    const params = {
+      numeroContrat: this.id,
+      recherche: '',
+      tri: '',
+      triDecroissant: false,
+      dateDebut: '',
+      dateFin: '',
+      listeColonnes: ''
     }
+    const pages = new Paginator(billsUrl, this.token, params)
+
+    let page = { items: [], last: false }
+    do {
+      page = await pages.next()
+      log('debug', `Results count: ${page.items.length}`)
+      this.bills = this.bills.concat(page.items.map(item => new Bill(item)))
+    } while (!page.last)
   }
 
   async newEntries() {
@@ -93,23 +92,20 @@ class Bill extends Document {
 async function fetchSubscriptions(token) {
   log('info', 'Fetching subscriptions...')
 
-  try {
-    const response = await request({
-      method: 'GET',
-      uri: subscriptionsUrl,
-      headers: merge(baseHeaders, {
-        ConversationId: generateConversationId(),
-        token: token
-      }),
-      body: {}
-    })
-
-    log('debug', `Results count: ${response.resultats.length}`)
-    return response.resultats.map(result => new Subscription(token, result))
-  } catch (e) {
-    log('error', e.toString())
-    return []
+  const params = {
+    userWebId: '',
+    recherche: '',
+    tri: '',
+    triDecroissant: false
   }
+  const pages = new Paginator(subscriptionsUrl, token, params)
+
+  let page = { items: [], last: false }
+  do {
+    page = await pages.next()
+    log('debug', `Results count: ${page.items.length}`)
+    return page.items.map(item => new Subscription(token, item))
+  } while (!page.last)
 }
 
 module.exports = {
