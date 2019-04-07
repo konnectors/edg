@@ -1,6 +1,6 @@
 {
-  "version": "1.4.0",
-  "name": "Eaux de Grenoble",
+  "version": "1.5.0",
+  "name": "Eaux de Grenoble Alpes",
   "type": "konnector",
   "language": "node",
   "icon": "icon.png",
@@ -41,7 +41,7 @@
     }
   },
   "developer": {
-    "name": "Erwan Guyader (@taratatach)",
+    "name": "Erwan Guyader",
     "url": "https://github.com/taratatach"
   },
   "langs": [
@@ -50,8 +50,8 @@
   ],
   "locales": {
     "fr": {
-      "short_description": "Connecteur Eaux de Grenoble",
-      "long_description": "Ce connecteur récupère les factures depuis le site de Eaux de Grenoble",
+      "short_description": "Connecteur Eaux de Grenoble Alpes",
+      "long_description": "Ce connecteur récupère l'ensemble de vos factures depuis le site de Eaux de Grenoble Alpes. Pour chacun de vos contrats associés, nous créons un dossier nommé avec l'adresse de livraison, dans le dossier du type de contrat (e.g EAU pour les contrats d'abonnement à la livraison d'eau).",
       "permissions": {
         "files": {
           "description": "Utilisé pour sauvegarder les factures"
@@ -62,8 +62,8 @@
       }
     },
     "en": {
-      "short_description": "Connector for Eaux de Grenoble",
-      "long_description": "This connector fetches the bills from the Eaux de Grenoble's website",
+      "short_description": "Connector for Eaux de Grenoble Alpes",
+      "long_description": "This connector fetches all your bills from the Eaux de Grenoble Alpes' website. For each subscription associated with your account, we create a directory named with the service delivery address within the directory named after the type of service (e.g. EAU for the water delivery service).",
       "permissions": {
         "files": {
           "description": "Required to save the bills"
