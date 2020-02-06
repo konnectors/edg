@@ -1,11 +1,9 @@
 language: node_js
 node_js:
-- '8'
+- '12'
 env:
   global:
-  - GH_USER_EMAIL="travis@example.org"
-  - GH_USER_NAME="cozy-bot"
-  - DEPLOY_REPOSITORY="git@github.com:konnectors/edg.git"
+  # REGISTRY_TOKEN(editor=cozy, app=edg)
   - secure: De1gSh9SuRAJerKH3I3v9xo2gQxtlI+5cVI0jwQiAuSZP3n3wWVXDNjEjqN5JkLeCWlv1MPpK8uh4jV42e+YgyrBddMELBRc/kDxGy9DWViVx7hkQucXD0FRAQ9cNAMixqBufXN1CbeywSbGpv7WMtpbSStgRiu3+U1igOMerxkz0CCzbNAennacaU1dhhTf2jeOp36i93mA1cTlFAHdBAzpYPb6p3/MqD6b06oH8oJG0dghrhK9HT76w9LBrmGGHTR0AE/AlbHrWKZAzfJpc/YkJkaKGCt8iHMqOlBxL814xgbtzAZ26XlmZTY0fQmEsPD8xfakE/7/uz2lWaKDyYCyEgXktHT84w4s3RckWlOhk4g4URQMNWpG5d8xrwrn09O9cM79jtvGYhYKsTucftD/i6r/HqUllXBE7r+h5nRyVNFJ40V8pxTHzWVeWhX/DUhPsxhOZAdPTzsvFjPCGDM7kfePCkbBOJdANnF0q+d1XtJFMk79cQI401dqs8J+t7RK0M4cgZTelSM9S1qXuDKh6SEyCElURq+8urBaTa5kd3VnVDKdiiEZ5IdbKOYvqAtEF1yrH0UTNN1AeuXClJ1YLOrJqwdiLHmGJFc+TR/vdTxJD7sM5ggAGp+VnqYQuKvsW024HZlyAAZbK67FDrd6QYOsyQwC+tTTMXbZ0k4=
 cache:
   yarn: true
@@ -18,7 +16,6 @@ branches:
 script:
 - yarn lint
 - yarn build
-- yarn run check
 deploy:
 - provider: script
   skip-cleanup: true
