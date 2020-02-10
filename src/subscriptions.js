@@ -53,6 +53,7 @@ class Subscription {
     return newBills.map(bill => {
       return {
         id: bill.id,
+        vendorRef: bill.id,
         fileurl: bill.fileurl(),
         filename: bill.filename(),
         requestOptions: {

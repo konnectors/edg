@@ -23,7 +23,10 @@ async function start(fields) {
       await saveFiles(
         entries,
         { folderPath: folderPath },
-        { contentType: 'application/pdf' }
+        {
+          contentType: 'application/pdf',
+          fileIdAttributes: ['vendorRef']
+        }
       )
     })
   )
