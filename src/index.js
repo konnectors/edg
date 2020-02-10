@@ -25,7 +25,9 @@ async function start(fields) {
         { folderPath: folderPath },
         {
           contentType: 'application/pdf',
-          fileIdAttributes: ['vendorRef']
+          fileIdAttributes: ['vendorRef'],
+          sourceAccount: this.accountId,
+          sourceAccountIdentifier: fields.login
         }
       )
     })
