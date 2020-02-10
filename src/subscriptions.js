@@ -1,10 +1,11 @@
 const { log, Document, hydrateAndFilter } = require('cozy-konnector-libs')
 const { baseUrl } = require('./request')
 const Paginator = require('./paginator.js')
+const { generateConversationId } = require('./auth')
 
 const subscriptionsUrl = baseUrl + '/Abonnement/contrats'
 const billsUrl = baseUrl + '/Facture/listeFactures/'
-const pdfUrl = baseUrl + '/Facture/telechargePdf/'
+const pdfUrl = baseUrl + '/Facture/telecharger/'
 
 class Subscription {
   constructor(
@@ -55,6 +56,7 @@ class Subscription {
         fileurl: bill.fileurl(),
         filename: bill.filename(),
         requestOptions: {
+          headers: { ConversationId: generateConversationId() },
           qs: { token: this.token }
         }
       }
