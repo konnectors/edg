@@ -25,7 +25,7 @@ module.exports = function Paginator(url, token, params) {
           }),
           body: {}
         })
-        const { resultats, nbTotalResultats } = response
+        const { resultats = [], nbTotalResultats = 0 } = response
 
         resultsCount += resultats.length
         indexPage++
