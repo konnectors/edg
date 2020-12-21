@@ -28,7 +28,7 @@ async function authenticate(login, password) {
       }),
       body: {
         identifiant: login,
-        motDePasseMD5: password
+        motDePasse: password
       }
     })
 
