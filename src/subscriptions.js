@@ -1,10 +1,12 @@
 const { log, Document, hydrateAndFilter } = require('cozy-konnector-libs')
-const { baseUrl } = require('./request')
+const { posix } = require('path')
+const { baseUrl, headers, request } = require('./request')
 const Paginator = require('./paginator.js')
 const { generateConversationId } = require('./auth')
 
 const subscriptionsUrl = baseUrl + '/Abonnement/contrats'
-const billsUrl = baseUrl + '/Facture/listeFactures/'
+const subscriptionUrl = baseUrl + '/Abonnement/detailAbonnement/'
+const billsUrl = baseUrl + '/Facture/listeFactures'
 const pdfUrl = baseUrl + '/Facture/telecharger/'
 
 class Subscription {
@@ -12,15 +14,31 @@ class Subscription {
     token,
     {
       numeroContrat,
-      typeContrat: { libelle },
-      adresseLivraisonConstruite
+      typeContrat: { libelle }
     }
   ) {
     this.token = token
     this.id = numeroContrat
     this.type = libelle
-    this.address = adresseLivraisonConstruite
+    this.street = ''
     this.bills = []
+  }
+
+  async fetchAddress() {
+    try {
+      const { adresseLivraison } = await request({
+        method: 'GET',
+        uri: subscriptionUrl + this.id,
+        headers: headers({
+          ConversationId: generateConversationId(),
+          token: this.token
+        })
+      })
+      // We only keep the street address for now
+      this.street = adresseLivraison.adresse
+    } catch (e) {
+      log('error', e.toString())
+    }
   }
 
   async fetchBills() {
@@ -65,9 +83,7 @@ class Subscription {
   }
 
   folderPath() {
-    const re = /^(.+)\d{5}/
-    const street = re.exec(this.address)[1].trim()
-    return `${street}/${this.type}`
+    return posix.join(this.street, this.type)
   }
 }
 
