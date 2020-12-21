@@ -1,6 +1,5 @@
 const { log } = require('cozy-konnector-libs')
-const merge = require('lodash/merge')
-const { baseUrl, baseHeaders, request } = require('./request')
+const { baseUrl, headers, request } = require('./request')
 
 const authenticationUrl = baseUrl + '/Utilisateur/authentification'
 const tokenGenerationUrl = baseUrl + '/Acces/generateToken'
@@ -23,7 +22,7 @@ async function authenticate(login, password) {
     const response = await request({
       method: 'POST',
       uri: authenticationUrl,
-      headers: merge(baseHeaders, {
+      headers: headers({
         ConversationId: generateConversationId(),
         token: token
       }),
@@ -53,7 +52,7 @@ async function requestToken() {
     const response = await request({
       method: 'POST',
       uri: tokenGenerationUrl,
-      headers: merge(baseHeaders, {
+      headers: headers({
         ConversationId: generateConversationId(),
         Token: accessKey
       }),
