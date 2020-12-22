@@ -2,7 +2,6 @@ process.env.SENTRY_DSN =
   process.env.SENTRY_DSN ||
   'https://3809987582034f8392d3fc697ab04aa0@sentry.cozycloud.cc/59'
 
-
 const { log, BaseKonnector, mkdirp, saveFiles } = require('cozy-konnector-libs')
 const { posix } = require('path')
 const { authenticate } = require('./auth')
@@ -14,7 +13,9 @@ module.exports = new BaseKonnector(start)
 // information (fields). When you run this connector yourself in "standalone" mode or "dev" mode,
 // the account information come from ./konnector-dev-config.json file.
 async function start(fields) {
+  await this.deactivateAutoSuccessfulLogin()
   const token = await authenticate(fields.login, fields.password)
+  await this.notifySuccessfulLogin()
 
   return Promise.all(
     (await fetchSubscriptions(token)).map(async sub => {
