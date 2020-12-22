@@ -4,6 +4,7 @@ process.env.SENTRY_DSN =
 
 
 const { log, BaseKonnector, mkdirp, saveFiles } = require('cozy-konnector-libs')
+const { posix } = require('path')
 const { authenticate } = require('./auth')
 const { fetchSubscriptions } = require('./subscriptions')
 
@@ -17,7 +18,8 @@ async function start(fields) {
 
   return Promise.all(
     (await fetchSubscriptions(token)).map(async sub => {
-      const folderPath = [fields.folderPath, sub.folderPath()].join('/')
+      await sub.fetchAddress()
+      const folderPath = posix.join(fields.folderPath, sub.folderPath())
       log('debug', { folderPath })
 
       await mkdirp(folderPath)

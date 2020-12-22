@@ -1,6 +1,6 @@
 const { log } = require('cozy-konnector-libs')
 const merge = require('lodash/merge')
-const { baseHeaders, request } = require('./request')
+const { headers, request } = require('./request')
 const { generateConversationId } = require('./auth')
 
 module.exports = function Paginator(url, token, params) {
@@ -15,7 +15,7 @@ module.exports = function Paginator(url, token, params) {
         const response = await request({
           method: 'GET',
           uri: url,
-          headers: merge(baseHeaders, {
+          headers: headers({
             ConversationId: generateConversationId(),
             token
           }),
