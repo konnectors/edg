@@ -1,7 +1,3 @@
-process.env.SENTRY_DSN =
-  process.env.SENTRY_DSN ||
-  'https://3809987582034f8392d3fc697ab04aa0@sentry.cozycloud.cc/59'
-
 const { log, BaseKonnector, mkdirp, saveFiles } = require('cozy-konnector-libs')
 const { posix } = require('path')
 const { authenticate } = require('./auth')
